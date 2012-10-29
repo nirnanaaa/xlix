@@ -19,7 +19,9 @@ class EncryptPassword {
         $hashGen = $sha1->encryptString($password, $salt);
         if ($hash !== $hashGen['hash']) {
             throw new MozokValidateException("password missmatch");
+            return false;
         }
+        return true;
     }
 
     public function generateNewpassword() {
@@ -37,6 +39,9 @@ class EncryptPassword {
         if (strlen($hash) == 32) {
             // return 
         }
+    }
+    public function returnte(){
+        return "test";
     }
 
 }

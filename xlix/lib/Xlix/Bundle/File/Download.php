@@ -32,9 +32,9 @@ class Download {
         header('Content-Type: ' . $contentType);
         header('Content-lenght: ' . $size);
         if (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE") != false) {
-            header("Content-Disposition: attachment; filename=" . urlencode($filename) . '; modification-date="' . date('r', $mtime) . '";');
+            header("Content-Disposition: attachment; filename=" . urlencode(substr($filename,10,strlen($filename))) . '; modification-date="' . date('r', $mtime) . '";');
         } else {
-            header("Content-Disposition: attachment; filename=\"" . $filename . '"; modification-date="' . date('r', $mtime) . '";');
+            header("Content-Disposition: attachment; filename=\"" . substr($filename,10,strlen($filename)) . '"; modification-date="' . date('r', $mtime) . '";');
         }
         header('Content-Transfer-Encoding: binary');
         header('Expires: 0');
@@ -51,10 +51,10 @@ class Download {
     }
 
     public function checkNameForIlegal($name) {
-        if (preg_match('/(ä|ü|ö|\\|\0|\ )/i', $name)) {
-            return false;
+        if (preg_match('/\w+/i', $name)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

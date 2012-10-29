@@ -38,6 +38,7 @@ class Sha1 implements AlgoInterface {
         $hasharray = array();
         for($count = 0;$count <= $saltcount; $count++){
             $hasharray[] = sha1($string);
+            $hasharray[] = hash('whirlpool',$salt);
         }
         $reval = array(
             "salt" => $salt,
