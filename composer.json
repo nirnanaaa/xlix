@@ -1,0 +1,27 @@
+{
+    "name": "xlix/xlix",
+    "type": "library",
+    "description": "XLIX addon Framework / Backend for Symfony2",
+    "keywords": ["backend"],
+    "homepage": "http://xlix.eu",
+    "license": "BSD-3",
+    "authors": [
+        {
+            "name": "Florian Kasper",
+            "email": "florian@xlix.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0" : {
+            "XLX_" : "lib/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.9-dev"
+        }
+    }
+}
