@@ -6,11 +6,56 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Xlix\Bundle\File\Download;
 use Xlix\Bundle\Authentication\ValidateAuthentication;
 use Xlix\Bundle\File\Exception\FileNotFoundException;
+use Xlix\Bundle\Validation\NetworkValidation;
+use Xlix\Bundle\Parser\Yaml\YamlParser;
 
 class ControllerOverride extends Controller {
 
+    protected $_provider;
+    protected $_storage;
+
+    public function sendmail($to, $from, $subject, $text) {
+        $message = \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom($from)
+                ->setTo($to)
+                ->setBody($text)
+        ;
+        $this->get('mailer')->send($message);
+    }
+
+    public function systemMail($to, $subject, $text) {
+        $this->sendmail($to, $this->getXlixConfig()->mailer['from'], $subject, $text);
+    }
+
     public function getName() {
         return get_class($this);
+    }
+
+    public function getValidator() {
+        return new NetworkValidation();
+    }
+
+    public function getXlixConfig() {
+        $yamlparser = new YamlParser();
+        return $yamlparser->parseXlixConfig();
+    }
+
+    public function getSymfonyConfig() {
+        $yamlparser = new YamlParser();
+        return $yamlparser->parseSymfonyConfig();
+    }
+
+    public function getYamlConfig($file) {
+        $yamlparser = new YamlParser();
+        if (file_exists($file)) {
+            return $yamlparser->parseFile($file);
+        }
+        return null;
+    }
+
+    public function getFormParamValue($param) {
+        return($this->getRequest()->request->get($this->getXlixConfig()->global['params'][$param]));
     }
 
     public function redirectToHome() {
@@ -56,6 +101,14 @@ class ControllerOverride extends Controller {
         } else {
             throw new FileNotFoundException("The file was not found in the filesystem");
         }
+    }
+
+    public function renderError($msg) {
+        return $this->render($this->_provider, array('error' => $msg));
+    }
+
+    public function renderAction($msg) {
+        return $this->render($this->_provider, array('action' => $msg));
     }
 
 }

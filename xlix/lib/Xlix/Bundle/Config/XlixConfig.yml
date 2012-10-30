@@ -1,0 +1,27 @@
+mailer:
+    from: confirmation@khnetworks.com    
+global:
+    twig:
+        pagetitle: Corscience Download Manager
+        customcss:
+            - content.css
+            - header.css
+            - footer.css
+            - layout.css
+            - nav.css
+        customjs:
+            beginning:
+                - docrdy.js
+            ending: ~
+    params:
+        email: email
+        duration: duration       
+    upload:
+        dst_directory: /srv/downloads/              
+    journaling:
+        algorithm: sha3
+        rounds: 12
+database:
+    EntityNamespaces:
+      - CorscienceDownloadBundle
+      
