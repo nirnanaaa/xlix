@@ -18,5 +18,8 @@ class YamlParser {
     public function parseSymfonyConfig() {
         
     }
+    public function parseConfig($location){
+        return (object) $this->yaml->parse(file_get_contents($location));
+    }
 
 }

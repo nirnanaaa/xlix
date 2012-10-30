@@ -8,6 +8,7 @@ use Xlix\Bundle\Authentication\ValidateAuthentication;
 use Xlix\Bundle\File\Exception\FileNotFoundException;
 use Xlix\Bundle\Validation\NetworkValidation;
 use Xlix\Bundle\Parser\Yaml\YamlParser;
+use Xlix\Bundle\Loader\PluginLoader;
 
 class ControllerOverride extends Controller {
 
@@ -26,6 +27,16 @@ class ControllerOverride extends Controller {
 
     public function systemMail($to, $subject, $text) {
         $this->sendmail($to, $this->getXlixConfig()->mailer['from'], $subject, $text);
+    }
+
+    public function getPlugin($plugin_name) {
+        $plugin = new PluginLoader();
+        return $plugin->LoadPlugin($plugin_name);
+    }
+
+    public function getPluginConfig($plugin_name) {
+        $plugin = new PluginLoader();
+        return $plugin->LoadPluginConfig($plugin_name);
     }
 
     public function getName() {
