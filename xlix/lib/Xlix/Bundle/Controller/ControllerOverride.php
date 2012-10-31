@@ -94,9 +94,6 @@ class ControllerOverride extends Controller {
         $authentication->authAPI($this->getRequest());
     }
 
-    public function getORM() {
-        return $this->getDoctrine()->getManager();
-    }
 
     public function checkFileAge($file, $maxage) {
         if (file_exists($file)) {
