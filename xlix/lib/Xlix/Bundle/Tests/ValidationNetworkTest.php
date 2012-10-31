@@ -6,12 +6,16 @@ class ValidationNetworkTest extends \PHPUnit_Framework_TestCase {
 
     public function testIPvalidIp() {
         $validator = new NetworkValidation();
-        $match1 = $validator->isValidIpDiget('31.21.3.9');
-        $match2 = $validator->isValidIpDiget("999.999.21.93");
-        $this->assertEquals(1, $match1);
-        $this->assertEquals(0, $match2);
+        $match1 = (int)$validator->isValidIpDiget('31.21.3.9');
+        $match2 = (int)$validator->isValidIpDiget("999.999.21.93");
+        $this->assertEquals(0, $match1);
+        $this->assertEquals(1, $match2);
     }
-
+    public function testIsMailExisting(){
+        $validator = new NetworkValidation();
+        $match1 = (int) $validator->isMailExisting("bla@corscience.de");
+        $this->assertEquals(0,$match1);
+    }
     public function testisv4() {
         $validator = new NetworkValidation();
         $match1 = $validator->isIpv4('1.1.1.1');
