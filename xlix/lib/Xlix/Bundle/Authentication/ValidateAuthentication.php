@@ -20,6 +20,7 @@ class ValidateAuthentication {
         }
     }
 
+
     public function auth($password = null, $hash = null, $salt = null) {
 
         $validation = new ValidateNormalRequest();
