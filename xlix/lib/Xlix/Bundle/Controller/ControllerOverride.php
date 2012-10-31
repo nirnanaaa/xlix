@@ -8,13 +8,16 @@ use Xlix\Bundle\Authentication\ValidateAuthentication;
 use Xlix\Bundle\File\Exception\FileNotFoundException;
 use Xlix\Bundle\Validation\NetworkValidation;
 use Xlix\Bundle\Parser\Yaml\YamlParser;
-use Xlix\Bundle\Loader\PluginLoader;
-
+use Xlix\Bundle\Plugin\Loader;
 class ControllerOverride extends Controller {
 
     protected $_provider;
     protected $_storage;
     protected $_xlixCfg;
+    public function __construct(){
+        
+        
+    }
     public function sendmail($to, $from, $subject, $text) {
         $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
@@ -29,14 +32,8 @@ class ControllerOverride extends Controller {
         $this->sendmail($to, $this->getXlixConfig()->mailer['from'], $subject, $text);
     }
 
-    public function getPlugin($plugin_name) {
-        $plugin = new PluginLoader();
-        return $plugin->LoadPlugin($plugin_name);
-    }
-
-    public function getPluginConfig($plugin_name) {
-        $plugin = new PluginLoader();
-        return $plugin->LoadPluginConfig($plugin_name);
+    public function getPluginLoader() {
+        return new Loader();
     }
 
     public function getName() {
@@ -48,13 +45,13 @@ class ControllerOverride extends Controller {
     }
 
     public function getXlixConfig() {
-        if($this->_xlixCfg instanceof YamlParser){
+        if ($this->_xlixCfg instanceof YamlParser) {
             $yamlparser = $this->_xlixCfg;
-        }else{
+        } else {
             $yamlparser = new YamlParser();
             $this->_xlixCfg = $yamlparser;
         }
-        
+
         return $yamlparser->parseXlixConfig();
     }
 
@@ -94,7 +91,6 @@ class ControllerOverride extends Controller {
         $authentication->authAPI($this->getRequest());
     }
 
-
     public function checkFileAge($file, $maxage) {
         if (file_exists($file)) {
             $moddate = filemtime($file);
@@ -105,7 +101,7 @@ class ControllerOverride extends Controller {
                 return false;
             }
         } else {
-            throw new FileNotFoundException("The file was not found in the filesystem");
+            throw new FileNotFoundException("The file was not found on the filesystem");
         }
     }
 
@@ -113,7 +109,7 @@ class ControllerOverride extends Controller {
         if (file_exists($file)) {
             unlink($file);
         } else {
-            throw new FileNotFoundException("The file was not found in the filesystem");
+            throw new FileNotFoundException("The file was not found on the filesystem");
         }
     }
 
@@ -128,13 +124,15 @@ class ControllerOverride extends Controller {
     public function removeWhitespacesFromString($string) {
         return str_replace(" ", "", $string);
     }
-    public function getRepo($inner,$namespace = 0){
+
+    public function getRepo($inner, $namespace = 0) {
         $outer = $this->getXlixConfig()->database['EntityNamespaces'][$namespace];
-        return $this->getDoctrine()->getRepository($outer.":".$inner);
+        return $this->getDoctrine()->getRepository($outer . ":" . $inner);
     }
-    public function renderDefault($inner,$load = array(),$namespace = 0){
+
+    public function renderDefault($inner, $load = array(), $namespace = 0) {
         $outer = $this->getXlixConfig()->database['EntityNamespaces'][$namespace];
-        return $this->render($outer.":".$inner,$load);
+        return $this->render($outer . ":" . $inner, $load);
     }
 
 }

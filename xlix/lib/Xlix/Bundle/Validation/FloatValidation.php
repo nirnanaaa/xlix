@@ -1,7 +1,11 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+namespace Xlix\Bundle\Validation;
+
+class FloatValidation {
+
+    public function isFloat($resource) {
+        return is_float($resoruce);
+    }
+
+}

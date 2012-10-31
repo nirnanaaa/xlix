@@ -34,7 +34,7 @@ class Loader implements PluginParentInterface {
     }
 
     public function boot() {
-        
+        return $this;
     }
 
 }
