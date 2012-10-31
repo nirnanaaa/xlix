@@ -1,0 +1,18 @@
+globals:
+  STATUS_ONLINE:   online
+  STATUS_OFFLINE:  offline
+  WELCOME:         welcome
+  HOME_LINK:       Home
+  UPLOAD_LINK:     Upload
+  DOWNLOAD_LINK:   Download
+  COPYRIGHT:       copy
+  GTAC:            General Terms and Conditions
+  IMPRINT:         Imprint
+  CONTACT:         Contact
+  EMAIL_LABEL:     E-mail address
+  RAUS:            Request an upload session
+  MAIL_FILTER:     mailfilterrex
+  DWLINK:          downloadlink
+  CDM:             Corscience Download Manger
+  CSSIG:           Corscience GmbH & Co. KG
+  BASE_DWLINK:     https://upload.edvtest.er.corscience.de/web/download/

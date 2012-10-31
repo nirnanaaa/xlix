@@ -1,18 +1,10 @@
 mailer:
     from: confirmation@khnetworks.com    
 global:
+    webdir: /web/
     twig:
-        pagetitle: Corscience Download Manager
-        customcss:
-            - content.css
-            - header.css
-            - footer.css
-            - layout.css
-            - nav.css
-        customjs:
-            beginning:
-                - docrdy.js
-            ending: ~
+        jquery: //ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
+        jqueryui: //ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js
     params:
         email: email
         duration: duration       
@@ -26,4 +18,11 @@ database:
       - CorscienceDownloadBundle
 plugins:
     namespace: Xlix\Plugin
+api:
+    api_enabled: false
+    header_key:  XL-HEADER-KEY
+    header_secret: XL-HEADER-SECRET
+providers:
+    action: CorscienceDownloadBundle:Action:action.html.twig
+    error:  CorscienceDownloadBundle::error.html.twig
       

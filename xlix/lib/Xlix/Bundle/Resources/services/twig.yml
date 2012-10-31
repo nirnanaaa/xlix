@@ -1,0 +1,9 @@
+services:
+    xlix.twig.extension.dumpValue:
+        class: Xlix\Bundle\Twig\DumpValue
+        tags:
+            - { name: twig.extension }
+    xlix.twig.extension.includes:
+        class: Xlix\Bundle\Twig\Includes
+        tags:
+            - { name: twig.extension }

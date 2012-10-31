@@ -1,0 +1,5 @@
+services:
+    corscience.twig.extension:
+        class: Xlix\Plugin\Corscience\Twig\Variables
+        tags:
+            - { name: twig.extension }

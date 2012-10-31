@@ -14,7 +14,7 @@ class ControllerOverride extends Controller {
 
     protected $_provider;
     protected $_storage;
-
+    protected $_xlixCfg;
     public function sendmail($to, $from, $subject, $text) {
         $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
@@ -48,7 +48,13 @@ class ControllerOverride extends Controller {
     }
 
     public function getXlixConfig() {
-        $yamlparser = new YamlParser();
+        if($this->_xlixCfg instanceof YamlParser){
+            $yamlparser = $this->_xlixCfg;
+        }else{
+            $yamlparser = new YamlParser();
+            $this->_xlixCfg = $yamlparser;
+        }
+        
         return $yamlparser->parseXlixConfig();
     }
 
@@ -115,11 +121,23 @@ class ControllerOverride extends Controller {
     }
 
     public function renderError($msg) {
-        return $this->render($this->_provider, array('error' => $msg));
+        return $this->render($this->getXlixConfig()->providers['error'], array('error' => $msg));
     }
 
     public function renderAction($msg) {
-        return $this->render($this->_provider, array('action' => $msg));
+        return $this->render($this->getXlixConfig()->providers['action'], array('action' => $msg));
+    }
+
+    public function removeWhitespacesFromString($string) {
+        return str_replace(" ", "", $string);
+    }
+    public function getRepo($inner,$namespace = 0){
+        $outer = $this->getXlixConfig()->database['EntityNamespaces'][$namespace];
+        return $this->getDoctrine()->getRepository($outer.":".$inner);
+    }
+    public function renderDefault($inner,$load = array(),$namespace = 0){
+        $outer = $this->getXlixConfig()->database['EntityNamespaces'][$namespace];
+        return $this->render($outer.":".$inner,$load);
     }
 
 }
