@@ -5,7 +5,7 @@ namespace Xlix\Bundle\Validation;
 class NetworkValidation {
 
     public function isValidIpDiget($ip) {
-        return preg_match("/^((1?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(1?\d{1,2}|2[0-4]\d|25[0-5])$/", $ip);
+        return !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE);
     }
 
     public function isMailExisting() {
