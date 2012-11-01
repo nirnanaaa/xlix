@@ -22,6 +22,22 @@ api:
     api_enabled: false
     header_key:  XL-HEADER-KEY
     header_secret: XL-HEADER-SECRET
+    twitch:
+      key:            SU48pJhwtCwTUHBZAgSdA
+      secret:         wvXStObLJXRO2FVycV0lEx5Q7FKIapSxzM7NzkDwXM
+      ca:             cacert.pem
+      reqtoken:       http://api.justin.tv/oauth/request_token
+      acctoken:       http://api.justin.tv/oauth/access_token
+      authorize:      http://api.justin.tv/oauth/authorize
+      base:           http://api.twitch.tv/kraken/
+      callbase:       http://envylan.com/web/admin/callback
+      locations:
+          user:       users/
+          stream:     streams/
+          featured:   streams/featured/
+          channel:    channels/
+          top_games:  games/top/
+          search:     search/streams/
 providers:
     action: CorscienceDownloadBundle:Action:action.html.twig
     error:  CorscienceDownloadBundle::error.html.twig
