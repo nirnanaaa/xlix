@@ -8,7 +8,7 @@ class Request {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "{$url}");
 
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $request_result = curl_exec($ch);
         curl_close($ch);

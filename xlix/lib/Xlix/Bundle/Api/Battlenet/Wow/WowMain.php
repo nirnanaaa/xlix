@@ -27,12 +27,6 @@ class WowMain implements GameMainInterface {
     public function __construct() {
         $this->parser = new YamlParser;
         $this->achievement = new Achievement;
-        $this->character = new Character;
-        $this->guild = new Guild;
-        $this->challengeMode = new ChallengeMode;
-        $this->battlePet = new PetBattle;
-        $this->item = new Item;
-        $this->pvp = new Pvp;
         $this->auction = new Auction;
     }
 
@@ -58,9 +52,9 @@ class WowMain implements GameMainInterface {
     }
 
     public function bootCheckUp() {
-        if (empty($this->getGameConstants())) {
-            throw new InvalidConfigurationProvidedException("configuration failure or config is empty");
-        }
+      //  if (empty($this->getGameConstants())) {
+       //     throw new InvalidConfigurationProvidedException("configuration failure or config is empty");
+       // }
     }
 
 }
