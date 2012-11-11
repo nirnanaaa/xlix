@@ -1,0 +1,34 @@
+#-static
+
+#-RouteStart
+.name:      mainroute
+.match:     /
+.status:    302
+.require:   link eq 'ax
+'ax:        a,b,c,d,e
+.controller:Homepage|DefaultBundle~Blog=index
+#-RouteEnd
+#-RouteStart
+.name:      home2
+.match:     /{link}
+.status:    302
+.require:   link eq 'ax
+'ax:        a,b,c,d,e
+.controller:XlixBundle~Routing
+#-RouteEnd
+#-RouteStart
+.name:      home3
+.match:     /{link}
+.status:    302
+.require:   link eq 'ax
+'ax:        a,b,c,d,e
+.controller:XlixBundle~Routing
+#-RouteEnd
+#-RouteStart
+.name:      home4
+.match:     /{link}
+.status:    302
+.require:   link eq 'ax
+'ax:        a,b,c,d,e
+.controller:XlixBundle~Routing
+#-RouteEnd
