@@ -11,14 +11,14 @@ class XlixBundle extends Bundle {
     }
 
     public function getMyName() {
-        return "XLIX - CMS Bundle for Symfony2";
+        return "XLIX - Provider bundle for Symfony2";
     }
 
     public function getDescription() {
         return "a symfony2 vendor!";
     }
     public function __construct() {
-        
+        //load your important files here
     }
 }
 
