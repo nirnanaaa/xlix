@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 /*
  * This file is part of the Xlix package.
  *
@@ -10,13 +9,10 @@
  * file that was distributed with this source code.
  */
 
-=======
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
 namespace Xlix\Bundle\Routing\Ofwn;
 
 use Symfony\Component\HttpFoundation\Request;
 
-<<<<<<< HEAD
 /**
  * Basic utils
  *
@@ -31,10 +27,6 @@ class OfwnUtils {
      * @var array responsecodes
      * @deprecated since version 0x02
      */
-=======
-class OfwnUtils {
-
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     public static $statuscodes = array(
         100 => 'Continue',
         101 => 'Switching Protocols',
@@ -98,19 +90,15 @@ class OfwnUtils {
         511 => 'Network Authentication Required', // RFC6585
     );
 
-<<<<<<< HEAD
     /**
      * gets the current request base url 
      * 
      * @return string
      */
-=======
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     public function getCurrentRequestRoute() {
 
         return self::getRequest()->getBaseUrl();
     }
-<<<<<<< HEAD
 
     /**
      * gets the current request URI just a very simple function
@@ -130,67 +118,39 @@ class OfwnUtils {
      * @return string
      * @todo write the function ;)
      */
-=======
-    public function getRequestUri(){
-        return self::getRequest()->getRequestUri();
-    }
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     public function getCuttedRoute() {
         
     }
 
-<<<<<<< HEAD
     /**
      * Calls hardcoded the configuration manager Class and gets the config array
      * 
      * @return object
      */
-=======
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     public function getConfig() {
         $cfgProvider = new Compiler\ConfigManager();
         return $cfgProvider->getConfig();
     }
-
-<<<<<<< HEAD
     /**
      * Calls hardcoded the Request Object from the Symfony2 package
      * 
-     * @return Request
+     * @return object
      * @todo Write my own Request Class
      */
-=======
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     public static function getRequest() {
         return new Request($_GET, $_POST, pathinfo(2), $_COOKIE, $_FILES, $_SERVER);
     }
 
-<<<<<<< HEAD
-    /**
-     * gets a new Response object
-     * 
-     * @return Response
-     */
-=======
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     public function getResponse() {
         
     }
 
     public function isClass($instance) {
-<<<<<<< HEAD
         return is_object($instance);
     }
 
     public function isExDir($directory) {
         return is_dir($directory) && is_writable($directory);
-=======
-        
-    }
-
-    public function isExDir() {
-        
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
     }
 
     public static function getStatusCodeMessage($code) {
