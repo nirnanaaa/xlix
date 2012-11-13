@@ -131,28 +131,52 @@ class OfwnUtils {
         $cfgProvider = new Compiler\ConfigManager();
         return $cfgProvider->getConfig();
     }
+
     /**
      * Calls hardcoded the Request Object from the Symfony2 package
      * 
-     * @return object
+     * @return Request
      * @todo Write my own Request Class
      */
     public static function getRequest() {
         return new Request($_GET, $_POST, pathinfo(2), $_COOKIE, $_FILES, $_SERVER);
     }
 
+    /**
+     * gets the response (symfony atm)
+     * 
+     * @return object
+     * @todo Write my own Response class and first of all use a response;)
+     */
     public function getResponse() {
         
     }
-
+    ///isSes
+    /**
+     * checks if $instance is an object
+     * 
+     * @param mixed $instance
+     * @return boolean
+     */
     public function isClass($instance) {
         return is_object($instance);
     }
 
+    /**
+     * checks if a directory is existing and writeable!
+     * 
+     * @param string $directory
+     * @return boolean
+     */
     public function isExDir($directory) {
         return is_dir($directory) && is_writable($directory);
     }
-
+    /**
+     * gets a HTTP STATUS MESSAGE from a status code
+     * 
+     * @param int $code
+     * @return string
+     */
     public static function getStatusCodeMessage($code) {
         return self::$statuscodes[$code];
     }
