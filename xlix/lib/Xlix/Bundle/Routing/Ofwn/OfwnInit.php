@@ -75,7 +75,7 @@ class OfwnInit {
 
     /**
      * compiler call
-     * @todo Rename to __call!!!!
+     * @todo move to callOfwnCompiler and handle it with my own response
      * @deprecated since version 0x02
      */
     public function callCompiler() {
@@ -88,14 +88,30 @@ class OfwnInit {
         $this->callCompiler();
     }
 
+    /**
+     * NYI WOI
+     */
     private function callFOSCompiler() {
         
     }
 
+    /**
+     * NYI
+     */
     private function callOfwnCompiler() {
         
     }
 
+    /**
+     * calls the compiler or other functions.
+     * 
+     * if there is no useable method it will throw an Exception
+     * 
+     * @param string $arch The compiler Architecture e.g Ofwn
+     * @param array $params Parameters used by the function
+     * 
+     * @return Response
+     */
     public function __call($arch, $params = null) {
         if (preg_match("#^call(Ofwn|Symfony|Fos)Com#i", $arch)) {
             switch (strtolower($arch)):
