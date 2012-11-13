@@ -11,11 +11,11 @@ class XlixBundle extends Bundle {
     }
 
     public function getMyName() {
-        return "XLIX - Provider bundle for Symfony2";
+        return "XLIX - main";
     }
 
     public function getDescription() {
-        return "a symfony2 vendor!";
+        return "an Abstraction Framework currently on top of symfony2";
     }
     public function __construct() {
 
