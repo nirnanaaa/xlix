@@ -18,11 +18,7 @@ class XlixBundle extends Bundle {
         return "a symfony2 vendor!";
     }
     public function __construct() {
-<<<<<<< HEAD
-        
-=======
-        //load your important files here
->>>>>>> 03ea9998d918f7d89f8b7ddee2b2418b7bbc02f1
+
     }
 }
 
