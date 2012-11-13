@@ -12,6 +12,7 @@
 namespace Xlix\Bundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 /**
  * just the init Class of the Xlix package
  *
@@ -20,6 +21,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  */
 class XlixBundle extends Bundle {
+
     /**
      * returns the version number
      * @return int
@@ -27,6 +29,7 @@ class XlixBundle extends Bundle {
     public function getVersion() {
         return 0x03a;
     }
+
     /**
      * returns the name
      * @return string
@@ -34,6 +37,7 @@ class XlixBundle extends Bundle {
     public function getMyName() {
         return "XLIX - main";
     }
+
     /**
      * returns the description
      * @return string
@@ -41,11 +45,13 @@ class XlixBundle extends Bundle {
     public function getDescription() {
         return "an Abstraction Framework currently on top of symfony2";
     }
+
     /**
-     * NYI
+     * this is very very important so no one can use a bug in the PHP version to
+     * attack your script
      */
     public function __construct() {
-        
+        header_remove("X-Powered-By");
     }
 
 }
