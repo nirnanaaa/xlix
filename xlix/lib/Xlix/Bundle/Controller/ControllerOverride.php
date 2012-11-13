@@ -16,7 +16,7 @@ class ControllerOverride extends Controller {
     protected $_xlixCfg;
     public function __construct(){
         
-        
+         
     }
     public function sendmail($to, $from, $subject, $text) {
         $message = \Swift_Message::newInstance()
