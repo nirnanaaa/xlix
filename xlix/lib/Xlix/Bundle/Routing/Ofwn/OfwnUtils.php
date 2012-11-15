@@ -25,6 +25,7 @@ use Xlix\Bundle\Config\ConfigManager;
 class OfwnUtils {
 
     public $config;
+    public $configManager;
 
     /**
      * @var array responsecodes
@@ -94,7 +95,8 @@ class OfwnUtils {
     );
 
     public function __construct() {
-        $this->config = $this->getConfig()->getConfig();
+        $this->configManager = $this->getConfig();
+        $this->config = $this->configManager->getConfig();
     }
 
     /**
@@ -136,7 +138,6 @@ class OfwnUtils {
      */
     public function getConfig() {
         return new ConfigManager('Resources/config/ofwn.yml');
-        
     }
 
     /**

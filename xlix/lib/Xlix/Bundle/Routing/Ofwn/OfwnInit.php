@@ -38,20 +38,26 @@ class OfwnInit {
      * @todo move fetchRoutes out because it's deprecated
      */
     private $utils;
+    private $zeroDay;
 
     public function __construct($options = array()) {
-        if (array_key_exists("utils", $options)) {
+        if (!empty($options) && array_key_exists("utils", $options)) {
             $this->utils = new $options["utils"];
         } else {
             $this->utils = new OfwnUtils();
         }
-        $this->zeroDay = new ZeroDayReader($this->utils->config);
+        $this->zeroDay = new ZeroDayReader($this->utils->configManager);
     }
-    public function getRouteByCurrentUri(){
+
+    public function getRouteByCurrentUri() {
+        $uri = $this->utils->getRequestUri();
         
+        echo $uri;
     }
+
     public function test() {
         echo "<pre>";
+        echo $this->getRouteByCurrentUri();
         return $this->utils;
     }
 
