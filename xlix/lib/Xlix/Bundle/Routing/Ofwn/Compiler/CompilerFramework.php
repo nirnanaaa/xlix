@@ -97,14 +97,6 @@ class CompilerFramework {
         return new RouteLinker();
     }
 
-    /**
-     * gets the Arithmethical unit if necessary
-     * 
-     * @return RouteALU
-     */
-    public function getALU() {
-        return new RouteALU();
-    }
 
     /**
      * calls the other functions based on the "depth" method
@@ -124,23 +116,7 @@ class CompilerFramework {
      * 
      */
     public function seperateRoutingData($routingData) {
-        $matcher = $this->getMatcher();
-        $linker = $this->getLinker();
-        $alu = $this->getALU();
-        foreach ($routingData as $routes) {
-            switch ($routes['type']) {
-                case 1:
-                    if ($route = $this->arch->getStatic()->compileData($routes, $matcher, $linker, $alu, $this->utils)) {
-                        return $linker->linkRoute($route);
-                        break;
-                    }
-                    break;
-                case 2:
-                    if ($this->arch->getDynamic()->compileData($routes, $matcher, $linker, $alu, $this->utils))
-                        break;
-                    break;
-            }
-        }
+
     }
 
     public function useController($controller) {

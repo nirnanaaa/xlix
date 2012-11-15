@@ -33,7 +33,8 @@ class RequestListener {
         $dispatcher = $event->getDispatcher();
         $ofwnGateway = new Ofwn\OfwnGateway();
         if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()) {
-            $dispatcher->addListener('kernel.request', array($ofwnGateway, 'handleRequest'), 999);
+            $ofwnGateway->handleRequest($event,$this->router);
+           // $dispatcher->addListener('kernel.request', array($ofwnGateway, 'handleRequest'), 999);
         }
     }
 
