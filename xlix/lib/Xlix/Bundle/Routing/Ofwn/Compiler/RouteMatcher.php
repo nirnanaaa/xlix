@@ -18,12 +18,13 @@ class RouteMatcher {
     public function matchesRouteToCurrentUrl($pattern, $utils) {
         $utl = $utils->getRequestUri();
         $cutted = $this->cutBaseOut($utl, $utils->getConfig());
+        $ctd = explode("?",$cutted);
         if ($this->foundRoute) {
             return false;
         } else {
             $regexBuilder = new Regex\Builder();
             $whatwehave = $regexBuilder->replaceWithString($pattern['pattern']);
-            if (preg_match("#^{$whatwehave}$#", $cutted)) {
+            if (preg_match("#^{$whatwehave}$#", $ctd[0])) {
                 $this->foundRoute = true;
                 return $pattern;
             }

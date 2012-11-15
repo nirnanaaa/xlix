@@ -81,7 +81,7 @@ class OfwnInit {
     public function callCompiler() {
         $cpinit = new CacheManager(new ConfigManager());
         $compilerExec = new Compiler\CompilerFramework($cpinit, $this->ofwnUtils, new Compiler\Architecture());
-        $compilerExec->compile();
+        return $compilerExec->compile();
     }
 
     private function callSymfonyCompiler() {

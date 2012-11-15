@@ -1,12 +1,10 @@
 #-static
 
 #-RouteStart
-.name:      mainroute
-.match:     /
-.status:    302
-.require:   link eq 'ax
-'ax:        a,b,c,d,e
-.controller:Homepage|DefaultBundle~Blog=index
+.name:      HEtunnelBroker
+.match:     /api/heUpdate
+.status:    200
+.controller:Homepage|ApiBundle~Broke=authenticate
 #-RouteEnd
 #-RouteStart
 .name:      home2

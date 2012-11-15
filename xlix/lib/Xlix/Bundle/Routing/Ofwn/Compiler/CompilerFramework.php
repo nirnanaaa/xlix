@@ -131,7 +131,7 @@ class CompilerFramework {
             switch ($routes['type']) {
                 case 1:
                     if ($route = $this->arch->getStatic()->compileData($routes, $matcher, $linker, $alu, $this->utils)) {
-                        $linker->linkRoute($route);
+                        return $linker->linkRoute($route);
                         break;
                     }
                     break;

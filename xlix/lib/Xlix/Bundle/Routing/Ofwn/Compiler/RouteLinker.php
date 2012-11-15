@@ -16,12 +16,13 @@ class RouteLinker {
             if (!method_exists($class, $method)) {
                 throw new Exception\ClassNotFoundException("could not find method: {$method}. Aborting");
             }
-            $this->linkRouteToClass($class, $method);
+            return array(
+                'class' => $class,
+                'method' => $method,
+            );
         }
     }
 
-    public function linkRouteToClass($class,$method) {
-        $cls = new $class;
-    }
+
 
 }

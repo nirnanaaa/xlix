@@ -12,6 +12,8 @@
 namespace Xlix\Bundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+//use Xlix\Bundle\DependencyInjection\RoutePass;
 
 /**
  * just the init Class of the Xlix package
@@ -28,7 +30,7 @@ class XlixBundle extends Bundle {
      */
     public function getVersion() {
         return 0x03a;
-    }
+    } 
 
     /**
      * returns the name
@@ -52,6 +54,20 @@ class XlixBundle extends Bundle {
      */
     public function __construct() {
         header_remove("X-Powered-By");
+    }
+
+    public function build(ContainerBuilder $container) {    
+        //error_log("bla0");
+        //$container->addCompilerPass(new RoutePass());
+        parent::build($container);
+    }
+
+    public function getNamespace() {
+        return __NAMESPACE__;
+    }
+
+    public function getPath() {
+        return strtr(__DIR__, '\\', '/');
     }
 
 }
