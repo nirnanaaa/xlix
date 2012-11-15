@@ -9,11 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Xlix\Bundle\Routing\Ofwn\Compiler;
+namespace Xlix\Bundle\Config;
 
 use Xlix\Bundle\Parser\Yaml\YamlParser;
 
 class ConfigManager {
+
+    private $file;
+
+    public function __construct($file) {
+        $this->file = $file;
+    }
+
     /**
      * Gets the compiler configuration file
      * 
@@ -21,10 +28,10 @@ class ConfigManager {
      */
     public function getConfig() {
         $parser = new YamlParser();
-        if(!$parser instanceof YamlParser){
+        if (!$parser instanceof YamlParser) {
             throw new Exception\ConfigException("Xlix Yaml Extension is necessary for parsing the configuration");
         }
-        return $parser->parseXlixRelativeConfig('Routing/Ofwn/Compiler/Options.yml');
+        return $parser->parseXlixRelativeConfig($this->file);
     }
 
     public function addConfig() {

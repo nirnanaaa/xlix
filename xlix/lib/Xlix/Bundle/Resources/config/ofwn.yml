@@ -1,0 +1,32 @@
+#NYI
+constants:
+    environment:
+        - DEV
+        - PROD
+        - TEST
+#NYI
+options:
+    timeout:  10
+    cache:
+        class:    Xlix\Bundle\Cache\CacheManager
+        keep:     3600
+        location: %xlix.root%/Resources/cache
+    request:
+        allowed_methods:
+            - GET
+            - PUT
+            - POST
+            - DELETE
+    format:
+      #ofc = ofwn Cached file
+        cache: %sha1(route)%.ofc
+#NYI
+rest:
+    must_extend:  Xlix\Bundle\Controller\Rest
+#NYI
+ofwn:
+    mapping:
+        cntrl:  Controller
+        act:    Action
+    
+        

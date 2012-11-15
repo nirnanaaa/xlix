@@ -1,0 +1,11 @@
+global type = "rest";
+global prefix = "/api";
+
+route{
+    name = "heUpdate";
+    route = "";
+    parameters = collection(
+        "tunnel_id" => GETV['tid'] +
+        "user_id" => GETV['uid']
+    );
+}

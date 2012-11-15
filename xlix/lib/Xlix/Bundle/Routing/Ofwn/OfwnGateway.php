@@ -23,7 +23,7 @@ class OfwnGateway {
         //echo "bla";
         $request = $event->getRequest();
         $ofwnize = new OfwnInit();
-        $info = $ofwnize->callCompiler();
+        $info = $ofwnize->test();
         // create a new route; other arguments would be an
         // array containing requirements and an array with options
         print_r($info);

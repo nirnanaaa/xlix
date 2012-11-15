@@ -12,6 +12,7 @@
 namespace Xlix\Bundle\Routing\Ofwn;
 
 use Symfony\Component\HttpFoundation\Request;
+use Xlix\Bundle\Config\ConfigManager;
 
 /**
  * Basic utils
@@ -22,6 +23,8 @@ use Symfony\Component\HttpFoundation\Request;
  *
  */
 class OfwnUtils {
+
+    public $config;
 
     /**
      * @var array responsecodes
@@ -90,12 +93,16 @@ class OfwnUtils {
         511 => 'Network Authentication Required', // RFC6585
     );
 
+    public function __construct() {
+        $this->config = $this->getConfig()->getConfig();
+    }
+
     /**
      * gets the current request base url 
      * 
      * @return string
      */
-    public function getCurrentRequestRoute() {
+    public function getBaseUrl() {
 
         return self::getRequest()->getBaseUrl();
     }
@@ -128,8 +135,8 @@ class OfwnUtils {
      * @return object
      */
     public function getConfig() {
-        $cfgProvider = new Compiler\ConfigManager();
-        return $cfgProvider->getConfig();
+        return new ConfigManager('Resources/config/ofwn.yml');
+        
     }
 
     /**
@@ -151,6 +158,7 @@ class OfwnUtils {
     public function getResponse() {
         
     }
+
     ///isSes
     /**
      * checks if $instance is an object
@@ -171,6 +179,7 @@ class OfwnUtils {
     public function isExDir($directory) {
         return is_dir($directory) && is_writable($directory);
     }
+
     /**
      * gets a HTTP STATUS MESSAGE from a status code
      * 
