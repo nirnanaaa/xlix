@@ -11,6 +11,7 @@ options:
         class:    Xlix\Bundle\Cache\CacheManager
         keep:     3600
         location: %xlix.root%/Resources/cache
+        ignore: . ..
     request:
         allowed_methods:
             - GET

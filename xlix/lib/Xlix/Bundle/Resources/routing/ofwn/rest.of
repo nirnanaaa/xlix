@@ -3,9 +3,9 @@ global prefix = "/api";
 
 route{
     name = "heUpdate";
-    route = "";
+    route = "/heUpdate";
     parameters = collection(
-        "tunnel_id" => GETV['tid'] +
-        "user_id" => GETV['uid']
+        "tunnel_id" => GETV["tid"] +
+        "user_id" => GETV["uid"]
     );
 }

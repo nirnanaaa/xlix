@@ -26,4 +26,28 @@ class ZeroDayReader {
         $this->config = $config;
     }
 
+    public function readFilesInDir() {
+        $files = array();
+        $dir = $this->_tabledir . '/' . $dir;
+        if ($externalDir = opendir($dir)) {
+            while (false !== ($entry = readdir($externalDir))) {
+                if (!preg_match("#^(\.|\..|\.php)$#", $entry)) {
+                    $files[] = $this->readFileLines($dir . "/" . $entry);
+                }
+            }
+        }
+    }
+
+    public function getAllRouteFiles() {
+        $fileList = $this->readFilesInDir();
+    }
+
+    public function readContentInFile() {
+        
+    }
+
+    public function parseValues($percentaged) {
+        
+    }
+
 }
