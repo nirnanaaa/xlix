@@ -13,10 +13,14 @@ namespace Xlix\Bundle\Routing\Lang\Reference;
 
 interface ConstantsInterface {
 
-    public function getIdentifier();
-    public function getType();
-    public function getOptions();
+    const TYPE_BLOCK = "block";
+    const TYPE_VAR = "variable";
 
+    public function getIdentifier();
+
+    public function getType();
+
+    public function getOptions();
 }
 
 ?>

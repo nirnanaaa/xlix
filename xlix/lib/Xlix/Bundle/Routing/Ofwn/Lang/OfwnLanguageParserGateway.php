@@ -10,9 +10,9 @@
  */
 
 namespace Xlix\Bundle\Routing\Lang;
-use Xlix\bundle\Routing\Lang\Reference\override\Constants;
-use Xlix\bundle\Routing\Lang\Reference\route\Constants;
-use Xlix\bundle\Routing\Lang\Reference\globals\Constants;
+use Xlix\Bundle\Routing\Lang\Reference\override\Constants;
+use Xlix\Bundle\Routing\Lang\Reference\route\Constants;
+use Xlix\Bundle\Routing\Lang\Reference\globals\Constants;
 
 class OfwnLanguageParserGateway {
 

@@ -11,10 +11,28 @@
 
 namespace Xlix\Bundle\Routing\Lang\Reference\override;
 
-class Constants {
+use Xlix\Bundle\Routing\Lang\Reference\ConstantsInterface;
 
-    public function __construct() {
-        
+class Constants implements ConstantsInterface {
+
+    private $identifier = "override";
+    private $type = ConstantsInterface::TYPE_BLOCK;
+    private $options = array();
+
+    const GLOBALS_SEPERATOR = ";";
+    const GLOBALS_STARTDEL = "{";
+    const GLOBALS_ENDDEL = "}";
+
+    public function getIdentifier() {
+        return $this->identifier;
+    }
+
+    public function getOptions() {
+        return $this->options;
+    }
+
+    public function getType() {
+        return $this->type;
     }
 
 }
