@@ -1,6 +1,7 @@
-global type = "rest";
-global prefix = "/api";
-
+override{
+    type = "rest";
+    prefix = "/api";
+}
 route{
     name = "heUpdate";
     route = "/heUpdate";

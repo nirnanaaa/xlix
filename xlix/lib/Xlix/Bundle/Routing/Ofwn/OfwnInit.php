@@ -51,14 +51,14 @@ class OfwnInit {
 
     public function getRouteByCurrentUri() {
         $uri = $this->utils->getRequestUri();
-        
-        echo $uri;
+        $tables = $this->zeroDay->getAllRouteFiles();
+       // echo $uri;
     }
 
     public function test() {
         echo "<pre>";
         echo $this->getRouteByCurrentUri();
-        return $this->utils;
+        //return $this->utils;
     }
 
 }

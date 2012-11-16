@@ -18,8 +18,11 @@ options:
             - PUT
             - POST
             - DELETE
+    table:
+        location: %xlix.root%/Resources/routing/ofwn
     format:
       #ofc = ofwn Cached file
+        table:  %name%.of
         cache: %sha1(route)%.ofc
 #NYI
 rest:
