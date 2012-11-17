@@ -94,7 +94,8 @@ class OfwnLanguageParserGateway {
         }
         $cacheClass = $this->config->getConfig()->options['cache']['class'];
         $cacheManager = new $cacheClass($this->config);
-        
+        echo $cacheManager->addToCache('13231','hallo');
+        print_r($cacheManager->getFromCache('13231'));
         return($arrayBuilder->getArray($this->config->getConfig()->ofwn['mapping']['reference']));
     }
 

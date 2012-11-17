@@ -57,11 +57,11 @@ class CacheManager {
     }
 
     public function addToCache($id, $value) {
-        
+        return $this->cache->addToCache($id, $value);
     }
 
     public function getFromCache($id) {
-        
+        return $this->cache->getFromCache($id);
     }
 
 }

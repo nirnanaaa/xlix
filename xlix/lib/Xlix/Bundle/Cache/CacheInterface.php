@@ -13,7 +13,7 @@ namespace Xlix\Bundle\Cache;
 
 interface CacheInterface {
 
-    public function __construct($cache);
+    public function __construct($config);
 
     public function isAlive($id);
 
