@@ -9,19 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Xlix\Bundle\Routing\Lang\Reference\override;
+namespace Xlix\Bundle\Routing\Ofwn\Lang\Reference\Globals;
 
-use Xlix\Bundle\Routing\Lang\Reference\ConstantsInterface;
+use Xlix\Bundle\Routing\Ofwn\Lang\Reference\ConstantsInterface;
 
-class Constants implements ConstantsInterface {
+class GlobalsConstants implements ConstantsInterface {
 
-    private $identifier = "override";
+    private $identifier = "global";
     private $type = ConstantsInterface::TYPE_BLOCK;
     private $options = array();
-
-    const GLOBALS_SEPERATOR = ";";
-    const GLOBALS_STARTDEL = "{";
-    const GLOBALS_ENDDEL = "}";
+    private $enddel = "}";
+    private $startdel = "{";
+    private $seperator = "";
 
     public function getIdentifier() {
         return $this->identifier;
@@ -33,6 +32,18 @@ class Constants implements ConstantsInterface {
 
     public function getType() {
         return $this->type;
+    }
+
+    public function getEndDelimiter() {
+        return $this->enddel;
+    }
+
+    public function getSeperator() {
+        return $this->seperator;
+    }
+
+    public function getStartDelimiter() {
+        return $this->startdel;
     }
 
 }

@@ -52,6 +52,7 @@ class OfwnInit {
     public function getRouteByCurrentUri() {
         $uri = $this->utils->getRequestUri();
         $tables = $this->zeroDay->getAllRouteFiles();
+        print_r($tables);
        // echo $uri;
     }
 

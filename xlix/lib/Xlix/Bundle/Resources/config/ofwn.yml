@@ -29,8 +29,15 @@ rest:
     must_extend:  Xlix\Bundle\Controller\Rest
 #NYI
 ofwn:
+    location: Xlix\Bundle\Routing\Ofwn\Lang\Reference
     mapping:
-        cntrl:  Controller
-        act:    Action
+        constants:  Constants
+        reference:  Reference
+        cntrl:      Controller
+        act:        Action
+    reference:
+        - Globals
+        - Override
+        - Route
     
         

@@ -6,7 +6,7 @@ route{
     name = "heUpdate";
     route = "/heUpdate";
     parameters = collection(
-        "tunnel_id" => GETV["tid"] +
-        "user_id" => GETV["uid"]
+        "tunnel_id" = GETV["tid"]! ,
+        "user_id" = GETV["uid"]!
     );
 }

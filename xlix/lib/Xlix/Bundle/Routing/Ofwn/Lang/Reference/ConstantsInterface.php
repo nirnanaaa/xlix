@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Xlix\Bundle\Routing\Lang\Reference;
+namespace Xlix\Bundle\Routing\Ofwn\Lang\Reference;
 
 interface ConstantsInterface {
 

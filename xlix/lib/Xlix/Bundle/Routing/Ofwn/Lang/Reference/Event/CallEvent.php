@@ -9,15 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Xlix\Bundle\Routing\Ofwn\Lang\Reference;
+namespace Xlix\Bundle\CallEvent;
 
-interface ReferenceInterface {
+class CallEvent {
 
-    public function parseContent($string);
+    public function __construct() {
+        
+    }
 
-    public function registerModules();
-
-    public function getOptions();
 }
 
 ?>

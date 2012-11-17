@@ -13,7 +13,7 @@ namespace Xlix\Bundle\Routing\Ofwn;
 
 use Xlix\Bundle\Config\ConfigManager;
 use Xlix\Bundle\File\FileReader;
-use Xlix\Bundle\Routing\Lang\OfwnLanguageParserGateway;
+use Xlix\Bundle\Routing\Ofwn\Lang\OfwnLanguageParserGateway;
 
 /**
  * @author  Florian Kasper <xlix@khnetworks.com>
@@ -52,8 +52,9 @@ class ZeroDayReader {
     }
 
     public function parserGateway($fileArrayList) {
-        print_r($fileArrayList);
-        $parser = new OfwnLanguageParserGateway($fileArrayList);
+        //print_r($fileArrayList);
+        $parser = new OfwnLanguageParserGateway($fileArrayList, $this->config);
+        return $parser->routeParser();
     }
 
     public function readContentInFile() {
