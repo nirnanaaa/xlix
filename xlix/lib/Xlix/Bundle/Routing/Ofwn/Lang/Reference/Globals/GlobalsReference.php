@@ -45,8 +45,8 @@ class GlobalsReference implements ReferenceInterface {
      * @todo    refactor $string to $array or something clear
      * @return  array 
      */
-    public function parseContent($array) {
-        return $array;
+    public function parseContent($string) {
+        return $string;
     }
 
     /**

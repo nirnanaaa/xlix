@@ -27,16 +27,14 @@ class CacheManager {
     public function __construct(ConfigManager $config) {
         $this->config = $config->getConfig()->options['cache'];
         $this->type = $this->detectBestCache();
-        echo "123";
     }
 
     public function isAlive($id) {
-        
+        return $this->cache->isAlive(sha1($id));
     }
-
-    // if (filemtime()) {
-    // }
-
+    public function isExisting($id){
+        return $this->cache->isExisting(sha1($id));
+    }
 
     public function detectBestCache() {
         $type = "";
@@ -57,11 +55,11 @@ class CacheManager {
     }
 
     public function addToCache($id, $value) {
-        return $this->cache->addToCache($id, $value);
+        return $this->cache->addToCache(sha1($id), $value);
     }
 
     public function getFromCache($id) {
-        return $this->cache->getFromCache($id);
+        return $this->cache->getFromCache(sha1($id));
     }
 
 }

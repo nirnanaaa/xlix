@@ -76,8 +76,8 @@ class OfwnLanguageParserGateway {
         $this->fileList = $fileList;
         $this->dispatcher = new EventDispatcher();
         $this->config = $config;
-        $this->getConstants($config);
-        $this->getReference($config);
+        $this->getConstants($config->getConfig());
+        $this->getReference($config->getConfig());
     }
 
     /**
@@ -86,17 +86,24 @@ class OfwnLanguageParserGateway {
      * @return array
      */
     public function routeParser() {
-        $referenceMatcher = new Reference\ReferenceMatcher();
-        $arrayBuilder = new ArrayBuilder();
-        foreach ($this->constants as $name => $const) {
-            $match = $referenceMatcher->getMatch($this->fileList, $const);
-            $arrayBuilder->addToArray($this->config->getConfig()->ofwn['mapping']['reference'], $this->reference[$name]->parseContent($match), strtolower($name));
-        }
         $cacheClass = $this->config->getConfig()->options['cache']['class'];
         $cacheManager = new $cacheClass($this->config);
-        echo $cacheManager->addToCache('13231','hallo');
-        print_r($cacheManager->getFromCache('13231'));
-        return($arrayBuilder->getArray($this->config->getConfig()->ofwn['mapping']['reference']));
+        if ($cacheManager->isExisting('LanguageParserGatewayq') == 1 &&
+                $ref = $cacheManager->getFromCache('LanguageParserGatewayq')) {
+            
+        } else {
+            $referenceMatcher = new Reference\ReferenceMatcher();
+            $arrayBuilder = new ArrayBuilder();
+            foreach ($this->constants as $name => $const) {
+                $match = $referenceMatcher->getMatch($this->fileList, $const);
+                $arrayBuilder->addToArray($this->config->getConfig()->ofwn['mapping']['reference'], $this->reference[$name]->parseContent($match), strtolower($name));
+            }
+
+            $ref = $arrayBuilder->getArray($this->config->getConfig()->ofwn['mapping']['reference']);
+            $cacheManager->addToCache('LanguageParserGatewayq', $ref);
+        }
+        return $ref;
+        //return();
     }
 
     /**

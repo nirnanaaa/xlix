@@ -57,7 +57,7 @@ class Manager implements CacheInterface {
      * 
      * @return boolean 
      */
-    private function isExisting($id) {
+    public function isExisting($id) {
         return apc_exists($id);
     }
     /**
@@ -69,10 +69,10 @@ class Manager implements CacheInterface {
      */
     public function getFromCache($id) {
         if (!$this->isExisting($id)) {
-            return false;
+            return 0;
         }
         if (!$this->isAlive($id)) {
-            return false;
+            return 0;
         }
         $fetch = apc_fetch($id);
         return json_decode(base64_decode($fetch['value']), true);
@@ -82,17 +82,17 @@ class Manager implements CacheInterface {
      * 
      * @param mixed $id string or integer, mostly string
      * 
-     * @return boolean
+     * @return integer
      */
     public function isAlive($id) {
         if (!$this->isExisting($id)) {
-            return false;
+            return 0;
         }
         $fetch = apc_fetch($id);
         if ($fetch['mtime'] + $this->config['keep'] > time()) {
-            return true;
+            return 1;
         }
-        return false;
+        return 0;
     }
 
 }
