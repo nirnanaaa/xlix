@@ -9,9 +9,15 @@ options:
     timeout:  10
     cache:
         class:    Xlix\Bundle\Cache\CacheManager
+        templ:    Xlix\Bundle\Cache\%s\Manager
         keep:     3600
-        location: %xlix.root%/Resources/cache
-        ignore: . ..
+        apc:
+            use:  1
+        memcached:
+            use:  0
+        file:
+            location: %xlix.root%/Resources/cache
+            ignore: . ..
     request:
         allowed_methods:
             - GET
