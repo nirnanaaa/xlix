@@ -9,9 +9,9 @@ route{
 }
 route{
     type = "rest";
-    name = "heUpdate";
-    route = "/heUpdate";
-    controller ="HomepageApiBundle:Broke:authenticate";
+    name = "MirrorDriver"; 
+    route = "/mirror";
+    controller ="HomepageApiBundle:Mirror";
 }
 route{
     name = "generator";

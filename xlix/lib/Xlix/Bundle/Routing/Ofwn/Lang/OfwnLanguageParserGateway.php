@@ -86,10 +86,11 @@ class OfwnLanguageParserGateway {
      * @return array
      */
     public function routeParser() {
+         
         $cacheClass = $this->config->getConfig()->options['cache']['class'];
         $cacheManager = new $cacheClass($this->config);
-        if ($cacheManager->isExisting('LanguageParserGatewayp') == 1 &&
-                $ref = $cacheManager->getFromCache('LanguageParserGatewayp')) {
+        if ($cacheManager->isExisting('LanguageParserGatewaynn') == 1 &&
+                $ref = $cacheManager->getFromCache('LanguageParserGatewaynn')) { 
         } else {
             $referenceMatcher = new Reference\ReferenceMatcher();
             $arrayBuilder = new ArrayBuilder();
@@ -100,7 +101,7 @@ class OfwnLanguageParserGateway {
             }
 
             $ref = $arrayBuilder->getArray($this->config->getConfig()->ofwn['mapping']['reference']);
-            $cacheManager->addToCache('LanguageParserGatewayp', $ref);
+            $cacheManager->addToCache('LanguageParserGatewaynn', $ref);
         }
         return $ref;
         //return();
