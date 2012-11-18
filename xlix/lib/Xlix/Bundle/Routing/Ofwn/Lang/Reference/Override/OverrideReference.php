@@ -56,16 +56,18 @@ class OverrideReference implements ReferenceInterface {
      * @return  array 
      */
     public function parseContent($string) {
-        $string = str_replace(" ", "", $string);
+        $string = str_replace(" ", "", $string[0]);
         $constants = new OverrideConstants();
         $process = explode($constants->getSeperator(), $string);
         $result = array();
         foreach ($process as $const) {
             preg_match("#(.*?)\=#i", $const, $index);
-            if (in_array($index[1], $this->constants)) {
-                preg_match("#{$index[1]}\=\"(.*?)\"#i", $const, $value);
-                if ($value[1] != "") {
-                    $result[$index[1]] = $value[1];
+            if (array_key_exists(1, $index)) {
+                if (in_array($index[1], $this->constants)) {
+                    preg_match("#{$index[1]}\=\"(.*?)\"#i", $const, $value);
+                    if ($value[1] != "") {
+                        $result[$index[1]] = $value[1];
+                    }
                 }
             }
         }

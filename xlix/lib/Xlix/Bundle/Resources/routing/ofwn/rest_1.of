@@ -1,0 +1,31 @@
+override{
+    type = "rest";
+    prefix = "/api";
+}
+route{
+    name = "heUpdate";
+    route = "/heUpdate";
+    controller ="HomepageApiBundle:Broke:authenticate";
+    parameters = collection(
+        "tunnel_id" = GETV["tid"]! ,
+        "user_id" = GETV["uid"]!
+    );
+}
+route{
+    name = "generator";
+    route = "/heUpdate";
+    controller ="HomepageApiBundle:Broke:authenticate";
+    parameters = collection(
+        "tunnel_id" = GETV["tid"]! ,
+        "user_id" = GETV["uid"]!
+    );
+}
+route{
+    name = "main";
+    route = "/";
+    controller ="HomepageDefaultBundle:Blog:index";
+    parameters = collection(
+        "tunnel_id" = GETV["tid"]! ,
+        "user_id" = GETV["uid"]!
+    );
+}

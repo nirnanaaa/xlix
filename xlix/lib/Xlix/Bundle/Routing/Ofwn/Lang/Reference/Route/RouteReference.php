@@ -37,6 +37,8 @@ class RouteReference implements ReferenceInterface {
         "route",
         "parameters",
         "type",
+        "controller",
+        "action"
     );
 
     /**
@@ -71,37 +73,30 @@ class RouteReference implements ReferenceInterface {
      * @return  array 
      */
     public function parseContent($string) {
-        $string = str_replace(" ", "", $string);
+
         $constants = new RouteConstants();
-        $process = explode($constants->getSeperator(), $string);
+        $rid = 0;
         $result = array();
-        foreach ($process as $proc) {
-            preg_match("#(.*?)\=#i", $proc, $index);
-            if (in_array($index[1], $this->constants)) {
-                preg_match("#{$index[1]}\=\"(.*?)\"#i", $proc, $value);
-                if ($value[1] != "") {
-                    $result[$index[1]] = $value[1];
-                    continue;
-                }
-                preg_match("#\=(.*?)\(#", $proc, $type);
-                if (in_array($type[1], $this->types)) {
-                    preg_match("#\((.*?)\)#", $proc, $value);
-                    $ppc = explode(",", $value[1]);
-                    foreach ($ppc as $values) {
-                        preg_match("#\"(.*?)\"\=#", $values, $indexes);
-                        preg_match("#{$indexes[0]}(.*?)\!#", $values, $value);
-                        if (preg_match("#GETV#", $value[1])) {
-                            preg_match("#\[\"(.*?)\"]#", $value[1], $getvar);
-                            $value[1] = $_GET[$getvar[1]];
+        foreach ($string as $str) {
+            $str = str_replace(" ", "", $str);
+            $process = explode($constants->getSeperator(), $str);
+            foreach ($process as $proc) {
+                preg_match("#(.*?)\=#i", $proc, $index);
+                if (array_key_exists(1, $index)) {
+                    if (in_array($index[1], $this->constants)) {
+
+                        preg_match("#{$index[1]}\=\"(.*?)\"#i", $proc, $value);
+                        if ($value[1] != "") {
+                            $result[$rid][$index[1]] = $value[1];
                         }
-                        $result[$index[1]][$indexes[1]] = $value[1];
                     }
                 }
             }
+            $rid++;
         }
-
         return $result;
     }
+
     /**
      * currently unused ... but this method should register all *Mod files
      *

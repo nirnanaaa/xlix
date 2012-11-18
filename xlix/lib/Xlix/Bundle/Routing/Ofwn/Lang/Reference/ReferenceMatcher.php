@@ -13,12 +13,15 @@ namespace Xlix\Bundle\Routing\Ofwn\Lang\Reference;
 
 class ReferenceMatcher {
 
-    public function getMatch($text, ConstantsInterface $const){
-        preg_match("#{$const->getIdentifier()}(.*?){$const->getEndDelimiter()}#i",$text[0], $matches);
-        if(!empty($matches)){
-            return(str_replace($const->getStartDelimiter(),"",$matches[1]));
+    public function getMatch($text, ConstantsInterface $const) {
+        preg_match_all("#{$const->getIdentifier()}(.*?){$const->getEndDelimiter()}#i", $text[0], $matches);
+        $combined = array();
+        foreach ($matches[1] as $match) {
+            if (!empty($match)) {
+                $combined[] = str_replace($const->getStartDelimiter(), "", $match);
+            }
         }
-       
+        return($combined);
     }
 
 }

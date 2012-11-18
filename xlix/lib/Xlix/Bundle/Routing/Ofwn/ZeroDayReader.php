@@ -46,13 +46,11 @@ class ZeroDayReader {
     }
 
     public function getAllRouteFiles() {
-
         $fileList = $this->readFilesInDir();
-        print_r($this->parserGateway($fileList));
+        return($this->parserGateway($fileList));
     }
 
     public function parserGateway($fileArrayList) {
-        //print_r($fileArrayList);
         $parser = new OfwnLanguageParserGateway($fileArrayList, $this->config);
         return $parser->routeParser();
     }

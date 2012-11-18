@@ -39,27 +39,55 @@ class OfwnInit {
      */
     private $utils;
     private $zeroDay;
+    private $request;
 
-    public function __construct($options = array()) {
+    public function __construct($request, $options = array()) {
         if (!empty($options) && array_key_exists("utils", $options)) {
             $this->utils = new $options["utils"];
         } else {
             $this->utils = new OfwnUtils();
         }
+        $this->request = $request;
         $this->zeroDay = new ZeroDayReader($this->utils->configManager);
     }
 
     public function getRouteByCurrentUri() {
         $uri = $this->utils->getRequestUri();
         $tables = $this->zeroDay->getAllRouteFiles();
-        print_r($tables);
-       // echo $uri;
+        foreach ($tables['route'] as $routes) {
+            if (array_key_exists('prefix', $routes)) {
+                if ($routes['prefix'] === "none") {
+                    if ($routes['route'] ==
+                            $this->getCuttedRequestUri()) {
+                        return $routes;
+                    }
+                }
+            } else {
+                // if ($routes['prefix'] !== "none") {
+                if ($tables['override']['prefix'] . $routes['route'] ==
+                        $this->getCuttedRequestUri()) {
+                    return $routes;
+                    //   }
+                }
+            }
+            // print_r($this->getCuttedRequestUri());
+        }
+        return null;
+        // echo $uri;
     }
 
-    public function test() {
-        echo "<pre>";
-        echo $this->getRouteByCurrentUri();
-        //return $this->utils;
+    public function getCuttedRequestUri() {
+        $Curi = explode("?", $this->request->getRequestUri());
+        return preg_replace("#\/(.*?)\/#", "/", $Curi[0]);
+    }
+
+    public function isAllowedMethod($method) {
+        $allowed = $this->utils->config->options['request']['allowed_methods'];
+        if(in_array(strtoupper($method), $allowed)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

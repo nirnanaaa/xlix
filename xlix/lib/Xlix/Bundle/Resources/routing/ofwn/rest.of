@@ -1,12 +1,28 @@
 override{
-    type = "rest";
     prefix = "/api";
 }
 route{
+    type = "rest";
+    name = "apiHome";
+    route ="/";
+    controller = "HomepageApiBundle:Default";
+}
+route{
+    type = "rest";
     name = "heUpdate";
     route = "/heUpdate";
-    parameters = collection(
-        "tunnel_id" = GETV["tid"]! ,
-        "user_id" = GETV["uid"]!
-    );
+    controller ="HomepageApiBundle:Broke:authenticate";
+}
+route{
+    name = "generator";
+    route = "/heUpdates";
+    controller ="HomepageApiBundle:Broke";
+    action = "authenticate";
+}
+route{
+    name = "main";
+    route = "/";
+    prefix = "none";
+    controller ="HomepageDefaultBundle:Blog";
+    action = "index";
 }
