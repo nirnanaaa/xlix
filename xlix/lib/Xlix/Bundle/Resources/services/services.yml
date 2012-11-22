@@ -1,0 +1,4 @@
+imports:
+    - { resource: ../../../../../plugin/lib/Xlix/Plugin/Corscience/Resources/services/twig.yml }
+    - { resource: twig.yml }
+services:

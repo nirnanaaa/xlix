@@ -1,0 +1,10 @@
+services:
+    twig.extension.globals:
+        class: Xlix\Bundle\Twig\GlobalVariableExtension
+        tags:
+            - { name: twig.extension }
+    twig.extension.includes:
+        class: Xlix\Bundle\Twig\Includes
+        tags:
+            - { name: twig.extension }
+

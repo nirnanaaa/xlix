@@ -1,0 +1,28 @@
+override{
+    prefix = "/api";
+}
+route{
+    type = "rest";
+    name = "apiHome";
+    route ="/";
+    controller = "HomepageApiBundle:Default";
+}
+route{
+    type = "rest";
+    name = "MirrorDriver"; 
+    route = "/mirror";
+    controller ="HomepageApiBundle:Mirror";
+}
+route{
+    name = "generator";
+    route = "/heUpdates";
+    controller ="HomepageApiBundle:Broke";
+    action = "authenticate";
+}
+route{
+    name = "main";
+    route = "/";
+    prefix = "none";
+    controller ="HomepageDefaultBundle:Blog";
+    action = "index";
+}

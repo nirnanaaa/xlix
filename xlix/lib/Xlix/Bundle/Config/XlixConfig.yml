@@ -1,0 +1,78 @@
+mailer:
+    from: confirmation@khnetworks.com    
+global:
+    webdir: /web/
+    twig:
+        jquery: //ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
+        jqueryui: //ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js
+    params:
+        email: email
+        duration: duration       
+    upload:
+        dst_directory: /uploads              
+    journaling:
+        algorithm: sha3
+        rounds: 12
+database:
+    EntityNamespaces:
+      - KhnetworksDefaultbundle
+plugins:
+    namespace: Xlix\Plugin
+api:
+    server:
+      customrouter:   true
+      #rails/zend/custom(with provider)
+      router_style:   rails 
+      responses:
+        200:          OK
+        201:          Created
+        401:          You should not be here!
+        403:          Crazy shit what are you searching for?
+        404:          Here is nothing to see for you
+        405:          Bitch!
+        409:          Fight!
+        410:          He has moved away ... far far away
+        414:          The URI you requested is toooooooo long
+        415:          He does not like it
+        500:          He is dead you can not do anymore for him
+        501:          He does not support this
+        502:          He is not responseable
+        505:          This protocol is not (yet?) supported
+      meths:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTION
+        - HEAD
+      access:
+        HEAD:   public
+        GET:    public
+        POST:   private
+        PUT:    private
+        DELETE: private
+        OPTION: private
+      response: application/json
+    api_enabled: false
+    header_key:  XL-HEADER-KEY
+    header_secret: XL-HEADER-SECRET
+    twitch:
+      key:            SU48pJhwtCwTUHBZAgSdA
+      secret:         wvXStObLJXRO2FVycV0lEx5Q7FKIapSxzM7NzkDwXM
+      ca:             cacert.pem
+      reqtoken:       http://api.justin.tv/oauth/request_token
+      acctoken:       http://api.justin.tv/oauth/access_token
+      authorize:      http://api.justin.tv/oauth/authorize
+      base:           http://api.twitch.tv/kraken/
+      callbase:       http://envylan.com/web/admin/callback
+      locations:
+          user:       users/
+          stream:     streams/
+          featured:   streams/featured/
+          channel:    channels/
+          top_games:  games/top/
+          search:     search/streams/
+providers:
+    action: CorscienceDownloadBundle:Action:action.html.twig
+    error:  CorscienceDownloadBundle::error.html.twig
+      

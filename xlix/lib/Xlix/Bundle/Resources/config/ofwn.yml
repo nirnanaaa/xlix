@@ -1,0 +1,49 @@
+#NYI
+constants:
+    environment:
+        - DEV
+        - PROD
+        - TEST
+#NYI
+options:
+    timeout:  10
+    cache:
+        class:    Xlix\Bundle\Cache\CacheManager
+        templ:    Xlix\Bundle\Cache\%s\Manager
+        keep:     3600
+        apc:
+            use:  1
+        memcached:
+            use:  0
+        file:
+            location: %xlix.root%/Resources/cache
+            ignore: . ..
+    request:
+        allowed_methods:
+            - GET
+            - PUT
+            - POST
+            - DELETE
+    table:
+        location: %xlix.root%/Resources/routing/ofwn
+    format:
+      #ofc = ofwn Cached file
+        table:  %name%.of
+        cache: %sha1(route)%.ofc
+#NYI
+rest:
+    must_extend:  Xlix\Bundle\Controller\Rest
+#NYI
+ofwn:
+    location: Xlix\Bundle\Routing\Ofwn\Lang\Reference
+    mapping:
+        constants:  Constants
+        reference:  Reference
+        cntrl:      Controller
+        act:        Action
+    reference:
+        - Globals
+        - Override
+        - Route
+    
+        

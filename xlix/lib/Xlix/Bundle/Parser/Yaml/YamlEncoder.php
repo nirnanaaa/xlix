@@ -1,0 +1,36 @@
+<?php
+
+/*
+ * This file is part of the Xlix package.
+ *
+ * (c) Florian Kasper <xlix@khnetworks.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Xlix\Bundle\Parser\Yaml;
+use Symfony\Component\Yaml\Dumper;
+/**
+ * Yaml language encoder
+ *
+ * @author  Florian Kasper <xlix@khnetworks.com>
+ * @see     http://version.xlix.eu
+ *
+ */
+class YamlEncoder {
+
+    /**
+     * mixed yaml data
+     * @var mixed
+     */
+    public $yaml;
+
+    public function encode($mixed) {
+        $dumper = new Dumper();
+        return sprintf("%s", $dumper->dump($mixed));
+    }
+
+}
+
+?>

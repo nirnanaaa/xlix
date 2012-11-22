@@ -1,0 +1,34 @@
+locales:
+    eu:
+      - en_GB
+      - es_ES
+      - fr_FR
+      - ru_RU
+      - de_DE
+      - pt_PT
+      - it_IT
+    us:
+      - en_US
+      - es_MX
+      - pt_BR
+    kr:
+      - ko_KR
+    tw:
+      - zh_TW
+    cn:
+      - zh_CN
+regions:
+    - eu
+    - us
+    - kr
+    - cn
+base:
+    url: %s://%s.battle.net/api/
+    supported:
+        - http
+        - https
+    status:
+        500: Access Denied
+        404: When in doubt, blow it up. (page not found)
+        
+        

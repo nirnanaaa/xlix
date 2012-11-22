@@ -1,0 +1,15 @@
+#/*
+# * This file is part of the Xlix package.
+# *
+# * (c) Florian Kasper <xlix@khnetworks.com>
+# *
+# * For the full copyright and license information, please view the LICENSE
+# * file that was distributed with this source code.
+# */
+
+base_url:   /web
+b_welcome:  /
+expire:     7200
+cachedir:   Fci
+cachefile:  ocache.of
+version:    0x02
