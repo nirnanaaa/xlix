@@ -15,7 +15,7 @@ global:
         rounds: 12
 database:
     EntityNamespaces:
-      - KhnetworksDefaultbundle
+      - CorscienceDownloadBundle
 plugins:
     namespace: Xlix\Plugin
 api:
