@@ -10,6 +10,9 @@ class Fetch {
     public $_url;
     private $_link;
     private $_keys;
+    private $_links;
+    public $browser;
+    public $header;
 
     public function __construct() {
         set_time_limit(0);
@@ -23,6 +26,8 @@ class Fetch {
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($this->curl, CURLOPT_BINARYTRANSFER, 1);
         curl_setopt($this->curl, CURLOPT_TIMEOUT, 0);
+        $this->browser = new Browser($this->curl);
+        $this->header = new Header($this);
     }
 
     public function __destruct() {
@@ -30,12 +35,11 @@ class Fetch {
             curl_close($this->curl);
     }
 
-    public function getLinkStatus($link) {
-        $this->initGet($link)->crawlOnlyHeaders();
-        if (preg_match('/HTTP\/1\.1\ (2|3)\d{2}\ \w+/', $this->crawlHttpStatusCode())) {
-            return true;
-        }
-        return false;
+
+
+    public function getHttpStatusLine() {
+        $header = $this->crawlHeaderLines();
+        return $header[0];
     }
 
     public function crawlLinkExists($key) {
@@ -55,19 +59,7 @@ class Fetch {
         return "links successfully sent to JD's home";
     }
 
-    public function crawlOnlyHeaders() {
-        ob_start();
-        curl_setopt($this->curl, CURLOPT_NOBODY, true);
-        curl_setopt($this->curl, CURLOPT_HEADER, true);
-        if (($exec = curl_exec($this->curl)) === false) {
-            print_r(curl_error($this->curl));
-        }
-        ob_end_clean();
-        $this->_url = $exec;
-        curl_setopt($this->curl, CURLOPT_NOBODY, false);
-        curl_setopt($this->curl, CURLOPT_HEADER, false);
-        return $exec;
-    }
+
 
     public function crawlLocation() {
         foreach (preg_split("/((\r?\n)|(\r\n?))/", $this->_url) as $line) {
@@ -79,20 +71,7 @@ class Fetch {
         return $loc[1];
     }
 
-    public function crawlHttpStatusCode() {
-        $header = $this->crawlHeaderLines();
-        return $header[0];
-    }
 
-    public function crawlHeaderLines() {
-        $loc = array();
-        foreach (preg_split("/((\r?\n)|(\r\n?))/", $this->_url) as $line) {
-            if (!empty($line)) {
-                $loc[] = $line;
-            }
-        }
-        return $loc;
-    }
 
     public function crawlAllLinks() {
         $dom = new \DOMDocument();

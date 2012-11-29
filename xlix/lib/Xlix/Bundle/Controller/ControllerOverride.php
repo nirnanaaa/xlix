@@ -9,15 +9,18 @@ use Xlix\Bundle\File\Exception\FileNotFoundException;
 use Xlix\Bundle\Validation\NetworkValidation;
 use Xlix\Bundle\Parser\Yaml\YamlParser;
 use Xlix\Bundle\Plugin\Loader;
+use Symfony\Component\HttpFoundation\Response;
+
 class ControllerOverride extends Controller {
 
     protected $_provider;
     protected $_storage;
     protected $_xlixCfg;
-    public function __construct(){
+
+    public function __construct() {
         
-         
     }
+
     public function sendmail($to, $from, $subject, $text) {
         $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
@@ -69,7 +72,7 @@ class ControllerOverride extends Controller {
     }
 
     public function getFormParamValue($param) {
-        return($this->getRequest()->request->get($this->getXlixConfig()->global['params'][$param]));
+        return($this->getRequest()->request->get($param));
     }
 
     public function redirectToHome() {
@@ -113,8 +116,13 @@ class ControllerOverride extends Controller {
         }
     }
 
-    public function renderError($msg) {
-        return $this->render($this->getXlixConfig()->providers['error'], array('error' => $msg));
+    public function renderError($msg, $status = 500) {
+        $response = new Response();
+        $response->setStatusCode($status);
+        $response->setContent($this->renderView(
+                        $this->getXlixConfig()->providers['error'], array('error' => $msg)
+                ));
+        return $response;
     }
 
     public function renderAction($msg) {

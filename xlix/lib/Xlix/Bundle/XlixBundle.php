@@ -53,7 +53,7 @@ class XlixBundle extends Bundle {
      * attack your script
      */
     public function __construct() {
-        header_remove("X-Powered-By");
+      //  header_remove("X-Powered-By");
     }
 
     public function build(ContainerBuilder $container) {    
