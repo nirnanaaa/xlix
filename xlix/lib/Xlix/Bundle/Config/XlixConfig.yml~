@@ -1,5 +1,9 @@
 mailer:
+<<<<<<< HEAD
     from: uploadconfirmation@corscience.de   
+=======
+    from: confirmation@khnetworks.com    
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
 global:
     webdir: /web/
     twig:
@@ -9,13 +13,21 @@ global:
         email: email
         duration: duration       
     upload:
+<<<<<<< HEAD
         dst_directory: /srv/downloads/             
+=======
+        dst_directory: /uploads              
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
     journaling:
         algorithm: sha3
         rounds: 12
 database:
     EntityNamespaces:
+<<<<<<< HEAD
+      - CorscienceDownloadBundle
+=======
       - KhnetworksDefaultbundle
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
 plugins:
     namespace: Xlix\Plugin
 api:
@@ -75,4 +87,8 @@ api:
 providers:
     action: CorscienceDownloadBundle:Action:action.html.twig
     error:  CorscienceDownloadBundle::error.html.twig
+<<<<<<< HEAD
       
+=======
+      
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
