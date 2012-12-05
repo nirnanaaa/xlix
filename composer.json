@@ -1,27 +1,27 @@
 {
-    "name": "xlix/xlix",
+    "name": "xlix",
     "type": "library",
-    "description": "XLIX addon Framework / Backend for Symfony2",
-    "keywords": ["backend"],
-    "homepage": "http://xlix.eu",
-    "license": "BSD-3",
+    "description": "Xlix Lib",
+    "keywords": ["persistence", "xlix"],
+    "homepage": "http://khnetworks.com",
+    "license": "MIT",
     "authors": [
-        {
-            "name": "Florian Kasper",
-            "email": "florian@xlix.com"
-        }
+        {"name": "Florian Kasper", "email": "flo@khnetworks.com"}
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.2",
+        "symfony/console": ">=2.0"
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "symfony/yaml": ">=2.0.0,<2.2.0-dev"
+    },
+    "suggest": {
+        "symfony/yaml": ">=2.0.0,<2.2.0-dev"
     },
     "autoload": {
-        "psr-0" : {
-            "XLX_" : "lib/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.9-dev"
+        "psr-0": { 
+            "Xlix\\Bundle": "xlix/lib/"
         }
     }
 }

@@ -11,12 +11,15 @@ class Header {
         $this->intl = $intl;
     }
 
-    public function getLocation() {
-        
+    public function getLocation($link) {
+        $headers = $this->intl->initGet($link)->header->getOnlyHeaders();
+        $this->headers = $this->crawlHeaderLines($headers);
+        $helper = $this->iterateHelper("(L|l)ocation");
+        return $helper[2];
     }
 
     public function getStatusCode() {
-        preg_match('#HTTP\/1\.(0|1)\s(.*)\s#i', $this->headers[0], $match);
+        preg_match('#^HTTP\/1\.(0|1)\s(.*)\s#i', $this->headers[0], $match);
         return $match[2];
     }
 
@@ -36,16 +39,25 @@ class Header {
         
     }
 
-    public function getServer() {
-        
+    public function getSize($link) {
+        $headers = $this->intl->initGet($link)->header->getOnlyHeaders();
+        $this->headers = $this->crawlHeaderLines($headers);
+        $helper = $this->iterateHelper("(C|c)ontent\-(L|l)ength");
+        return $helper[3];
     }
 
-    public function getDate() {
-        
+    public function getServer($link) {
+        $headers = $this->intl->initGet($link)->header->getOnlyHeaders();
+        $this->headers = $this->crawlHeaderLines($headers);
+        $helper = $this->iterateHelper("(S|s)erver");
+        return $helper[2];
     }
 
-    public function getContentType() {
-        
+    public function getDate($link) {
+        $headers = $this->intl->initGet($link)->header->getOnlyHeaders();
+        $this->headers = $this->crawlHeaderLines($headers);
+        $helper = $this->iterateHelper("(D|d)ate");
+        return strtotime($helper[2]);
     }
 
     public function getCacheControl() {
@@ -54,17 +66,17 @@ class Header {
 
     public function iterateHelper($search) {
         foreach ($this->headers as $header) {
-            echo $header;
-            preg_match("#^{$search}\:\ (.*)$#i", $header, $match);
+            if (preg_match("#^{$search}:\s(.*)$#", $header, $match)) {
+                return $match;
+            }
         }
-        print_r($match);
-        return $match;
     }
 
     public function getConnectionState($link) {
         $headers = $this->intl->initGet($link)->header->getOnlyHeaders();
         $this->headers = $this->crawlHeaderLines($headers);
-        return $this->iterateHelper("Connection");
+        $helper = $this->iterateHelper("(C|c)onnection");
+        return $helper[2];
     }
 
     public function getOnlyHeaders() {

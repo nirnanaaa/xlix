@@ -10,17 +10,54 @@ use Xlix\Bundle\Validation\NetworkValidation;
 use Xlix\Bundle\Parser\Yaml\YamlParser;
 use Xlix\Bundle\Plugin\Loader;
 use Symfony\Component\HttpFoundation\Response;
-
+use Xlix\Bundle\Crypto\Aes\TwoLevel as AES256;
 class ControllerOverride extends Controller {
 
     protected $_provider;
     protected $_storage;
     protected $_xlixCfg;
-
-    public function __construct() {
-        
+        /**
+     * The i18n translator(internationalization)
+     * @var Translator 
+     */
+    public $translator;
+    
+    /**
+     * The AES encryption system
+     * @var \Xlix\Bundle\Crypto\Aes\TwoLevel 
+     */
+    public $aesencoder;
+    
+    /**
+     * The request
+     * @var Request
+     */
+    public $request;
+    
+    /**
+     * The users IP
+     * @var string
+     */
+    public $userip;
+    
+    /**
+     * Constructor.
+     * @version 0.9.3
+     * 
+     */
+    public function registerModules() {
+        $this->translator = $this->getTranslator();
+        $this->aesencoder = new AES256();
+        $this->request = $this->getRequest();
+        $this->userip = $this->request->getClientIp();
     }
-
+    
+    public function getTranslator(){
+        return $this->get('translator');
+    }
+    public function getOurRequest(){
+        return $this->getRquest();
+    }
     public function sendmail($to, $from, $subject, $text) {
         $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
@@ -79,9 +116,9 @@ class ControllerOverride extends Controller {
         $this->redirect('/');
     }
 
-    public function downloadFile($location, $filename, $mime = 'application/octet-stream') {
-        $dController = new Download($location);
-        return $dController->getFile($mime, $filename);
+    public function downloadFile($fileObject) {
+        $dController = new Download();
+        return $dController->getFile($fileObject);
     }
 
     public function validateAuthentication($password = null, $hash = null, $salt = null) {
@@ -97,8 +134,7 @@ class ControllerOverride extends Controller {
     public function checkFileAge($file, $maxage) {
         if (file_exists($file)) {
             $moddate = filemtime($file);
-            $offset = $moddate + $maxage * 60;
-            if ($offset > time()) {
+            if ($maxage > time()) {
                 return true;
             } else {
                 return false;
