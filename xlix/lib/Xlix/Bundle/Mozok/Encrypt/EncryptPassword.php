@@ -5,7 +5,11 @@ namespace Xlix\Bundle\Mozok\Encrypt;
 use Xlix\Bundle\Mozok\Encryption\Constants;
 use Xlix\Bundle\Mozok\Passwords\RandomPassword;
 use Xlix\Bundle\Mozok\Salts\RandomSalt;
+<<<<<<< HEAD
 use Xlix\Bundle\Mozok\Algorithms\Sha\Sha3;
+=======
+use Xlix\Bundle\Mozok\Algorithms\Sha\Sha1;
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
 use Xlix\Bundle\Mozok\Exception\MozokValidateException;
 
 class EncryptPassword {
@@ -15,7 +19,11 @@ class EncryptPassword {
     }
 
     public function mozokCheck($password, $hash, $salt = null) {
+<<<<<<< HEAD
         $sha1 = new Sha3();
+=======
+        $sha1 = new Sha1();
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
         $hashGen = $sha1->encryptString($password, $salt);
         if ($hash !== $hashGen['hash']) {
             throw new MozokValidateException("password missmatch");
@@ -25,7 +33,11 @@ class EncryptPassword {
     }
 
     public function generateNewpassword() {
+<<<<<<< HEAD
         $sha1 = new Sha3();
+=======
+        $sha1 = new Sha1();
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
         $salt = new RandomSalt();
         $password = new RandomPassword();
         $salt = substr($salt->getRandomSalt(), 0, 8);

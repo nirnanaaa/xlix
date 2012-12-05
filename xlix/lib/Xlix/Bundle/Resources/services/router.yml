@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 imports:
     - { resource: twig.yml }
 #
@@ -14,3 +15,18 @@ imports:
 #            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
             
  
+=======
+parameters:
+    listener.class: Xlix\Bundle\Routing\RequestListener
+services:
+    kernel.listener.xlix:
+        class:      "%listener.class%"
+        public:     true
+        arguments: 
+            - "@service_container"
+        #[@request.context, @logger]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
+            
+ 
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756

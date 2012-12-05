@@ -1,4 +1,5 @@
 services:
+<<<<<<< HEAD
     twig.extension.globals:
         class: Xlix\Bundle\Twig\GlobalVariableExtension
         tags:
@@ -8,3 +9,13 @@ services:
         tags:
             - { name: twig.extension }
 
+=======
+    xlix.twig.extension.dumpValue:
+        class: Xlix\Bundle\Twig\DumpValue
+        tags:
+            - { name: twig.extension }
+    xlix.twig.extension.includes:
+        class: Xlix\Bundle\Twig\Includes
+        tags:
+            - { name: twig.extension }
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756

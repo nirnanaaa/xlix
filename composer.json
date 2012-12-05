@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "xlix",
     "type": "library",
     "description": "Xlix Lib",
@@ -22,6 +23,31 @@
     "autoload": {
         "psr-0": { 
             "Xlix\\Bundle": "xlix/lib/"
+=======
+    "name": "xlix/xlix",
+    "type": "library",
+    "description": "XLIX addon Framework / Backend for Symfony2",
+    "keywords": ["backend"],
+    "homepage": "http://xlix.eu",
+    "license": "BSD-3",
+    "authors": [
+        {
+            "name": "Florian Kasper",
+            "email": "florian@xlix.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0" : {
+            "XLX_" : "lib/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.9-dev"
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
         }
     }
 }

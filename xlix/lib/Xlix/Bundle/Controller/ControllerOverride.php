@@ -9,13 +9,17 @@ use Xlix\Bundle\File\Exception\FileNotFoundException;
 use Xlix\Bundle\Validation\NetworkValidation;
 use Xlix\Bundle\Parser\Yaml\YamlParser;
 use Xlix\Bundle\Plugin\Loader;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\Response;
 use Xlix\Bundle\Crypto\Aes\TwoLevel as AES256;
+=======
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
 class ControllerOverride extends Controller {
 
     protected $_provider;
     protected $_storage;
     protected $_xlixCfg;
+<<<<<<< HEAD
         /**
      * The i18n translator(internationalization)
      * @var Translator 
@@ -57,6 +61,11 @@ class ControllerOverride extends Controller {
     }
     public function getOurRequest(){
         return $this->getRquest();
+=======
+    public function __construct(){
+        
+         
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
     }
     public function sendmail($to, $from, $subject, $text) {
         $message = \Swift_Message::newInstance()
@@ -109,16 +118,26 @@ class ControllerOverride extends Controller {
     }
 
     public function getFormParamValue($param) {
+<<<<<<< HEAD
         return($this->getRequest()->request->get($param));
+=======
+        return($this->getRequest()->request->get($this->getXlixConfig()->global['params'][$param]));
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
     }
 
     public function redirectToHome() {
         $this->redirect('/');
     }
 
+<<<<<<< HEAD
     public function downloadFile($fileObject) {
         $dController = new Download();
         return $dController->getFile($fileObject);
+=======
+    public function downloadFile($location, $filename, $mime = 'application/octet-stream') {
+        $dController = new Download($location);
+        return $dController->getFile($mime, $filename);
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
     }
 
     public function validateAuthentication($password = null, $hash = null, $salt = null) {
@@ -134,7 +153,12 @@ class ControllerOverride extends Controller {
     public function checkFileAge($file, $maxage) {
         if (file_exists($file)) {
             $moddate = filemtime($file);
+<<<<<<< HEAD
             if ($maxage > time()) {
+=======
+            $offset = $moddate + $maxage * 60;
+            if ($offset > time()) {
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
                 return true;
             } else {
                 return false;
@@ -152,6 +176,7 @@ class ControllerOverride extends Controller {
         }
     }
 
+<<<<<<< HEAD
     public function renderError($msg, $status = 500) {
         $response = new Response();
         $response->setStatusCode($status);
@@ -159,6 +184,10 @@ class ControllerOverride extends Controller {
                         $this->getXlixConfig()->providers['error'], array('error' => $msg)
                 ));
         return $response;
+=======
+    public function renderError($msg) {
+        return $this->render($this->getXlixConfig()->providers['error'], array('error' => $msg));
+>>>>>>> 644d210cc30c8ace9afe02f7f08bb576b1634756
     }
 
     public function renderAction($msg) {
