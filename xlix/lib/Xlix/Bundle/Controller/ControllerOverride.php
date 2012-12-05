@@ -57,7 +57,6 @@ class ControllerOverride extends Controller {
     }
     public function getOurRequest(){
         return $this->getRquest();
-    public function __construct(){
         
          
     }
