@@ -1,5 +1,12 @@
 <?php
-
+/*
+ * This file is part of the XLIX Bundle
+ *
+ * (c) Florian Kasper
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Xlix\Bundle\Mozok\Salts;
 
 class RandomSalt {
