@@ -14,13 +14,10 @@ class JDownloader extends Fetch {
         $this->cuBs = $base . ":" . $port;
     }
     public function encodeGet(){
-        $ao = array("&","=","?");
-        $al = array("%26","%3D","%3F");
-        $this->cuMl = str_replace($ao,$al,$this->cuMl);
+        $this->cuMl = urlencode($this->cuMl);
     }
     public function ask() {
         $this->encodeGet();
-        print_r($this->cuBs . $this->cuMl);
         return $this->initGet($this->cuBs . $this->cuMl)->crawl();
     }
 
