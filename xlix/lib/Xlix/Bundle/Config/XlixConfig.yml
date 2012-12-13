@@ -74,4 +74,4 @@ api:
           search:     search/streams/
 providers:
     action: CorscienceDownloadBundle:Action:action.html.twig
-    error:  CorscienceDownloadBundle::error.html.twig
+    error:  CorscienceDownloadBundle::error.html.haml
